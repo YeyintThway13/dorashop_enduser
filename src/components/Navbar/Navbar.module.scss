@@ -1,0 +1,140 @@
+@import "../../Theme.scss";
+
+.nav {
+  height: 80px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  background-color: $dark-main-color;
+
+  .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    .logoPhoto {
+      width: 40px;
+      border-radius: 100%;
+      margin-right: 15px;
+    }
+
+    .logoText {
+      font-weight: $fw-bolder;
+      font-size: $fs-l;
+      color: $light-color;
+    }
+  }
+
+  .navItems {
+    display: flex;
+
+    .navItem {
+      display: flex;
+      color: $light-color;
+      align-items: center;
+      margin: 0 15px;
+      font-weight: $fw-bold;
+      cursor: pointer;
+      position: relative;
+      transition: transform 500ms ease-in-out;
+
+      svg {
+        font-size: $fs-l;
+      }
+    }
+
+    .navItem::after {
+      position: absolute;
+      content: "";
+      width: 0;
+      height: 1px;
+      background-color: $primary-color;
+      bottom: 0;
+      left: 0;
+      transition: width 500ms ease-in-out;
+    }
+
+    .navItem:hover.navItem::after {
+      width: 100%;
+    }
+
+    .navItem:hover.navItem:last-child::after {
+      width: 0;
+    }
+
+    .navItem:hover.navItem:last-child {
+      transform: scale(1.1);
+    }
+  }
+
+  .mobileNav,
+  .openBtn {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .nav {
+    justify-content: space-between;
+    padding: 0 30px;
+
+    .desktopNav {
+      display: none;
+    }
+
+    .openBtn {
+      display: block;
+      font-size: $fs-l;
+      cursor: pointer;
+      color: $light-color;
+    }
+
+    .show.mobileNav {
+      right: 0;
+    }
+
+    .mobileNav {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      width: 60%;
+      position: absolute;
+      top: 0;
+      right: -100%;
+      background-color: $light-color;
+      border-radius: 50% 0 0 50%;
+      transition: 500ms;
+
+      .navItems {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .navItem {
+        color: $dark-main-color;
+        margin: 30px 0;
+        text-transform: uppercase;
+      }
+
+      .navItem::after {
+        height: 3px;
+      }
+
+      .closeBtn {
+        position: absolute;
+        top: 30px;
+        font-size: $fs-l;
+
+        right: 20px;
+        cursor: pointer;
+      }
+    }
+  }
+}
